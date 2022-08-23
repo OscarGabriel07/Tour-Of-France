@@ -11,6 +11,11 @@ public class CrearEquipoUseCase {
     private final EquipoRepository equipoRepository;
 
     public Mono<Equipo> crearEquipo(Equipo equipo){
-        return equipoRepository.save(equipo);
+
+        if(equipo.getCodigo().matches("[A-Za-z0-9]{1,3}")){
+            return equipoRepository.save(equipo);
+        }
+
+        return null;
     }
 }

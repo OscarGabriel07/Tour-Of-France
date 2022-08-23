@@ -12,4 +12,5 @@ public interface CiclistaRepository {
     Mono<Ciclista> findById(String id);
     Flux<Ciclista> findByNacionality(String nacionalidad);
     Mono<Void> deleteById(String id);
+    Flux<Ciclista> findByCodeTeam(String codigoEquipo);
 }

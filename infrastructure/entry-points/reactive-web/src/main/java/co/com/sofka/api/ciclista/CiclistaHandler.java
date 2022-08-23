@@ -3,6 +3,7 @@ package co.com.sofka.api.ciclista;
 import co.com.sofka.model.ciclista.Ciclista;
 import co.com.sofka.model.equipo.Equipo;
 import co.com.sofka.usecase.ciclista.actualizarciclista.ActualizarCiclistaUseCase;
+import co.com.sofka.usecase.ciclista.buscarciclistaporcodigoequipo.BuscarCiclistaPorCodigoEquipoUseCase;
 import co.com.sofka.usecase.ciclista.buscarciclistaporid.BuscarCiclistaPorIdUseCase;
 import co.com.sofka.usecase.ciclista.buscarciclistapornacionalidad.BuscarCiclistaPorNacionalidadUseCase;
 import co.com.sofka.usecase.ciclista.crearciclista.CrearCiclistaUseCase;
@@ -25,6 +26,7 @@ public class CiclistaHandler {
     private final CrearCiclistaUseCase crearCiclistaUseCase;
     private final EliminarCiclistaPorIdUseCase eliminarCiclistaPorIdUseCase;
     private final ListarCiclistasUseCase listarCiclistasUseCase;
+    private final BuscarCiclistaPorCodigoEquipoUseCase buscarCiclistaPorCodigoEquipoUseCase;
 
     public Mono<ServerResponse> listenPUTActualizarCiclista(ServerRequest serverRequest){
         var ciclistaId= serverRequest.pathVariable("id");
@@ -66,5 +68,12 @@ public class CiclistaHandler {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(listarCiclistasUseCase.listarCiclistas(), Ciclista.class);
+    }
+
+    public Mono<ServerResponse> listenGETBuscarCiclistaPorCodigoEquipo(ServerRequest serverRequest){
+        var codigoEquipo = serverRequest.pathVariable("codigo-equipo");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(buscarCiclistaPorCodigoEquipoUseCase.buscarCiclistaPorCodigoEquipo(codigoEquipo), Ciclista.class);
     }
 }

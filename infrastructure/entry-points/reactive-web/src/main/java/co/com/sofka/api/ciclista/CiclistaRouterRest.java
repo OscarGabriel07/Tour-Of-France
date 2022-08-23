@@ -19,7 +19,8 @@ public RouterFunction<ServerResponse> routerFunction(CiclistaHandler ciclistaHan
             .and(route(GET("/api/ciclista/buscar-por-nacionalidad/{nacionalidad}"), ciclistaHandler::listenGETBuscarCiclistaPorNacionalidad))
             .and(route(POST("/api/ciclista"), ciclistaHandler::listenPOSTCrearCiclistaUseCase))
             .and(route(DELETE("/api/ciclista/eliminar-por-id/{id}"), ciclistaHandler::listenDELETEEliminarEquipoPorId))
-            .and(route(GET("/api/ciclista/listar"), ciclistaHandler::listenGETListarCiclistasUseCase));
+            .and(route(GET("/api/ciclista/listar"), ciclistaHandler::listenGETListarCiclistasUseCase))
+            .and(route(GET("/api/ciclista/buscar-por-codigo-equipo/{codigo-equipo}"), ciclistaHandler::listenGETBuscarCiclistaPorCodigoEquipo));
 
     }
 }
